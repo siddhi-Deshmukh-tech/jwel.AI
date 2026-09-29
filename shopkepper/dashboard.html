@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jewel AI - Shopkeeper Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- Navigation Bar (0-15 min) -->
+  <header class="navbar">
+    <div class="logo">
+      <h2>Jewel AI <span>| Shopkeeper Admin</span></h2>
+    </div>
+    <nav class="nav-links">
+      <button class="nav-btn active" onclick="switchTab('add-jewellery')">Add Jewellery</button>
+      <button class="nav-btn" onclick="switchTab('inventory')">Inventory</button>
+      <button class="nav-btn" onclick="switchTab('requests')">
+        Customer Requests <span id="requestBadge" class="badge">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Section 1: Add/Edit Jewellery Form (15-65 min) -->
+    <section id="add-jewellery" class="tab-content active">
+      <div class="card">
+        <h2 id="formTitle">Add New Jewellery Item</h2>
+        <form id="jewelleryForm">
+          <input type="hidden" id="editProductId">
+
+          <div class="form-group">
+            <label for="prodName">Item Name</label>
+            <input type="text" id="prodName" placeholder="e.g. Royal Diamond Ring" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="prodCategory">Category</label>
+              <select id="prodCategory" required>
+                <option value="">Select Category</option>
+                <option value="Rings">Rings</option>
+                <option value="Necklaces">Necklaces</option>
+                <option value="Earrings">Earrings</option>
+                <option value="Bangles & Bracelets">Bangles & Bracelets</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="prodPrice">Price ($)</label>
+              <input type="number" id="prodPrice" min="0" placeholder="e.g. 1500" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="prodImage">Image URL or Preview</label>
+            <input type="url" id="prodImage" placeholder="https://images.unsplash.com/photo-..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="prodDescription">Product Details & Tags</label>
+            <textarea id="prodDescription" rows="3" placeholder="Enter metal type, karat, diamond purity, or keywords..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="saveBtn" class="btn btn-primary">Save Jewellery</button>
+            <button type="button" id="cancelBtn" class="btn btn-secondary" onclick="resetForm()" style="display: none;">Cancel Edit</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- Section 2: Inventory Management (65-90 min) -->
+    <section id="inventory" class="tab-content">
+      <div class="card">
+        <h2>Jewellery Inventory</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Section 3: Customer Requests Dashboard (90-130 min) -->
+    <section id="requests" class="tab-content">
+      <div class="card">
+        <h2>Customer Inquiries & Custom Requests</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Request Detail</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Update Status</th>
+              </tr>
+            </thead>
+            <tbody id="requestsTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
